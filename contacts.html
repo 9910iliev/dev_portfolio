@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Контакти | Contacts</title>
+  <link rel="stylesheet" href="projects.css" />
+  <link rel="stylesheet" href="nav.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <ul class="nav-menu">
+        <li><a id="nav-about" href="index.html#about-section">За мен</a></li>
+        <li><a id="nav-projects" href="projects.html#projects-section">Проекти</a></li>
+        <li><a id="nav-contact" href="contacts.html#contact-section" class="active">Контакт</a></li>
+        <li>
+          <button id="lang-toggle" aria-label="Смяна на езика">
+            <img id="lang-flag" src="images/bg-flag.png" alt="Български флаг" />
+            <span id="lang-text">BG</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="contact-section">
+      <h1 id="contacts-heading">Контакти</h1>
+      <p id="contact-intro">Свържете се с мен чрез социалните мрежи:</p>
+      <ul id="social-links">
+        <!-- Линкове ще се зареждат динамично -->
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Angel Iliev | Всички права запазени.
+  </footer>
+
+  <script src="contacts.js"></script>
+  <script src="lang.js" defer></script>
+</body>
+</html>
