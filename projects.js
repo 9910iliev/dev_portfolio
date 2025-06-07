@@ -50,29 +50,30 @@ const projects = [
 ];
 
 function getLang() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("lang") || "bg";
-}
-
-function setLang(newLang) {
-  const url = new URL(window.location.href);
-  url.searchParams.set("lang", newLang);
-  window.location.href = url.toString();
+  return localStorage.getItem("lang") || "bg";
 }
 
 function updateLanguage(lang) {
-  document.getElementById("projects-heading").textContent = content[lang].projectsHeading;
-  document.getElementById("lang-toggle").textContent = lang === "bg" ? "EN" : "BG";
 
   document.getElementById("nav-about").textContent = content[lang].navAbout;
   document.getElementById("nav-projects").textContent = content[lang].navProjects;
   document.getElementById("nav-contact").textContent = content[lang].navContact;
 
+
+  document.getElementById("projects-heading").textContent = content[lang].projectsHeading;
+
+
+  const toggleBtn = document.getElementById("language-toggle");
+  if (toggleBtn) {
+    toggleBtn.checked = (lang === "en");
+  }
+
+
   document.getElementById("nav-about").href = `index.html?lang=${lang}#about-section`;
   document.getElementById("nav-projects").href = `projects.html?lang=${lang}#projects-section`;
-  document.getElementById("nav-contact").href = `index.html?lang=${lang}#contact-section`;
   document.getElementById("nav-contact").href = `contacts.html?lang=${lang}#contact-section`;
 
+  renderProjects(lang);
 }
 
 function renderProjects(lang = "bg") {
@@ -99,9 +100,12 @@ function renderProjects(lang = "bg") {
     container.appendChild(card);
   });
 
+
   projects.forEach((project, index) => {
     let currentSlide = 0;
     const slideshow = document.querySelector(`.slideshow-container[data-project-index="${index}"]`);
+    if (!slideshow) return;
+
     const img = slideshow.querySelector(".slide-image");
     const prevBtn = slideshow.querySelector(".prev-btn");
     const nextBtn = slideshow.querySelector(".next-btn");
@@ -121,13 +125,14 @@ function renderProjects(lang = "bg") {
 document.addEventListener("DOMContentLoaded", () => {
   const lang = getLang();
   updateLanguage(lang);
-  renderProjects(lang);
 
-  const toggleBtn = document.getElementById("lang-toggle");
+
+  const toggleBtn = document.getElementById("language-toggle");
   if (toggleBtn) {
-    toggleBtn.addEventListener("click", () => {
-      const newLang = getLang() === "bg" ? "en" : "bg";
-      setLang(newLang);
+    toggleBtn.addEventListener("change", (e) => {
+      const newLang = e.target.checked ? "en" : "bg";
+      localStorage.setItem("lang", newLang);
+      updateLanguage(newLang);
     });
   }
 });

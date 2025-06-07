@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Контакти | Contacts</title>
   <link rel="stylesheet" href="projects.css" />
-  <link rel="stylesheet" href="nav.css" />
+
 </head>
 <body>
   <header>
@@ -15,9 +15,15 @@
         <li><a id="nav-projects" href="projects.html#projects-section">Проекти</a></li>
         <li><a id="nav-contact" href="contacts.html#contact-section" class="active">Контакт</a></li>
         <li>
-          <button id="lang-toggle" aria-label="Смяна на езика">
-            <img id="lang-flag" src="images/bg-flag.png" alt="Български флаг" />
-            <span id="lang-text">BG</span>
+       <center>
+	<div class="switch">
+	    <input id="language-toggle" class="check-toggle check-toggle-round-flat" type="checkbox">
+	    <label for="language-toggle"></label>
+	    <span class="on">BN</span>
+	    <span class="off">EN</span>
+       <span id="lang-label"></span>
+  	</div>
+ </center>
           </button>
         </li>
       </ul>

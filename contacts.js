@@ -6,13 +6,12 @@ const contentContacts = {
     contactsHeading: "Контакти",
     contactIntro: "Свържете се с мен чрез социалните мрежи:",
     socialProfiles: [
-       { name: "Email", url: "mailto:iliev201299@gmail.com" },
+      { name: "Email", url: "mailto:iliev201299@gmail.com" },
       { name: "GitHub", url: "https://github.com/9910iliev" },
       { name: "Instagram", url: "https://www.instagram.com/iliev.angel10/" },
       { name: "Guru", url: "https://www.guru.com/pro/dashboard.aspx" }
     ]
   },
-  
   en: {
     navAbout: "About",
     navProjects: "Projects",
@@ -29,37 +28,55 @@ const contentContacts = {
 };
 
 function getLang() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("lang") || "bg";
+  return localStorage.getItem("lang") || "bg";
 }
 
 function setLang(newLang) {
-  const url = new URL(window.location.href);
-  url.searchParams.set("lang", newLang);
-  window.location.href = url.toString();
+  localStorage.setItem("lang", newLang);
 }
 
 function updateLanguageContacts(lang) {
-  document.getElementById("contacts-heading").textContent = contentContacts[lang].contactsHeading;
-  document.getElementById("contact-intro").textContent = contentContacts[lang].contactIntro;
+  const content = contentContacts[lang];
 
-  document.getElementById("nav-about").textContent = contentContacts[lang].navAbout;
-  document.getElementById("nav-projects").textContent = contentContacts[lang].navProjects;
-  document.getElementById("nav-contact").textContent = contentContacts[lang].navContact;
+  document.getElementById("contacts-heading").textContent = content.contactsHeading;
+  document.getElementById("contact-intro").textContent = content.contactIntro;
 
-  document.getElementById("nav-about").href = `index.html?lang=${lang}#about-section`;
-  document.getElementById("nav-projects").href = `projects.html?lang=${lang}#projects-section`;
-  document.getElementById("nav-contact").href = `contacts.html?lang=${lang}#contact-section`;
+  const navAbout = document.getElementById("nav-about");
+  const navProjects = document.getElementById("nav-projects");
+  const navContact = document.getElementById("nav-contact");
+
+  if (navAbout) {
+    navAbout.textContent = content.navAbout;
+    navAbout.href = `index.html?lang=${lang}#about-section`;
+  }
+
+  if (navProjects) {
+    navProjects.textContent = content.navProjects;
+    navProjects.href = `projects.html?lang=${lang}#projects-section`;
+  }
+
+  if (navContact) {
+    navContact.textContent = content.navContact;
+    navContact.href = `contacts.html?lang=${lang}#contact-section`;
+  }
 
   const socialList = document.getElementById("social-links");
-  socialList.innerHTML = "";
-  contentContacts[lang].socialProfiles.forEach(profile => {
-    const li = document.createElement("li");
-    li.innerHTML = `<a href="${profile.url}" target="_blank" rel="noopener noreferrer">${profile.name}</a>`;
-    socialList.appendChild(li);
-  });
+  if (socialList) {
+    socialList.innerHTML = "";
+    content.socialProfiles.forEach(profile => {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${profile.url}" target="_blank" rel="noopener noreferrer">${profile.name}</a>`;
+      socialList.appendChild(li);
+    });
+  }
 
-  document.getElementById("lang-toggle").textContent = lang === "bg" ? "EN" : "BG";
+  const langText = document.getElementById("lang-text");
+  const langFlag = document.getElementById("lang-flag");
+  if (langText) langText.textContent = lang.toUpperCase();
+  if (langFlag) {
+    langFlag.src = lang === "bg" ? "images/bg-flag.png" : "images/en-flag.png";
+    langFlag.alt = lang === "bg" ? "Български флаг" : "English flag";
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -71,6 +88,5 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleBtn.addEventListener("click", () => {
       const newLang = getLang() === "bg" ? "en" : "bg";
       setLang(newLang);
-    });
-  }
-});
+      updateLanguageContacts(newLang); 
+  }}}

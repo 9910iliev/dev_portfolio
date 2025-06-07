@@ -1,9 +1,10 @@
+// script.js
+
 const content = {
   bg: {
     navAbout: "За мен",
     navProjects: "Проекти",
     navContact: "Контакт",
-    greeting: "Здравейте, аз съм Ангел Илиев",
     aboutHeading: "За мен",
     aboutText: `
       <p>Казвам се Ангел Илиев и съм софтуерен разработчик с интереси в автоматизацията, уеб технологиите и разработването на практични софтуерни решения. Знанията и уменията ми, особено в областта на Python програмирането, са придобити чрез обучението ми в SoftUni, където продължавам да се развивам и усъвършенствам.</p>
@@ -14,6 +15,7 @@ const content = {
         <li>Уеб инструменти за scrape-ване, обработка и визуализация на данни</li>
         <li>Малки и функционални уеб приложения</li>
         <li>Софтуерни решения, подпомагащи офис дейности и бизнес процеси</li>
+      </ul>
 
       <p>Стремя се към изграждане на практични, стабилни и лесни за използване решения, като винаги поставям фокус върху качеството на кода и нуждите на крайния потребител.</p>
     `
@@ -22,7 +24,6 @@ const content = {
     navAbout: "About",
     navProjects: "Projects",
     navContact: "Contact",
-    greeting: "Hello, I’m Angel Iliev",
     aboutHeading: "About Me",
     aboutText: `
       <p>My name is Angel Iliev, and I’m a software developer passionate about automation, web technologies, and building practical software solutions. My skills, especially in Python development, come from my training at SoftUni, where I continue to grow and improve.</p>
@@ -34,32 +35,73 @@ const content = {
         <li>Small and functional web applications</li>
         <li>Software solutions that support office and business processes</li>
       </ul>
+
       <p>I aim to create practical, stable, and user-friendly solutions, always focusing on code quality and real user needs.</p>
     `
   }
 };
 
-function updateLanguage(lang) {
-  document.getElementById("greeting").textContent = content[lang].greeting;
-  document.getElementById("about-heading").textContent = content[lang].aboutHeading;
-  document.getElementById("about-text").innerHTML = content[lang].aboutText;
-  document.getElementById("lang-toggle").textContent = lang === "bg" ? "EN" : "BG";
+function getLang() {
+  const params = new URLSearchParams(window.location.search);
+  const urlLang = params.get("lang");
+  const savedLang = localStorage.getItem("lang");
+  const lang = urlLang || savedLang || "bg";
 
-  document.getElementById("nav-about").textContent = content[lang].navAbout;
-  document.getElementById("nav-projects").textContent = content[lang].navProjects;
-  document.getElementById("nav-contact").textContent = content[lang].navContact;
-
-  document.getElementById("nav-about").href = `index.html?lang=${lang}#about-section`;
-  document.getElementById("nav-projects").href = `projects.html?lang=${lang}`;
-  document.getElementById("nav-contact").href = `index.html?lang=${lang}#contact-section`;
-  document.getElementById("nav-contact").href = `contacts.html?lang=${lang}#contact-section`;
-
+  if (urlLang && urlLang !== savedLang) {
+    localStorage.setItem("lang", urlLang);
+  }
+  return lang;
 }
 
-const currentLang = getLang();
-updateLanguage(currentLang);
+function setLang(lang) {
+  localStorage.setItem("lang", lang);
+  // Опционално: може да обновиш URL с параметър lang, ако искаш
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", lang);
+  window.history.replaceState({}, '', url);
+}
 
-document.getElementById("lang-toggle").addEventListener("click", () => {
-  const newLang = currentLang === "bg" ? "en" : "bg";
-  setLang(newLang);
+function updateLanguage(lang) {
+  const aboutHeading = document.getElementById("about-heading");
+  if (aboutHeading) aboutHeading.textContent = content[lang].aboutHeading;
+
+  const aboutText = document.getElementById("about-text");
+  if (aboutText) aboutText.innerHTML = content[lang].aboutText;
+
+  const navAbout = document.getElementById("nav-about");
+  if (navAbout) {
+    navAbout.textContent = content[lang].navAbout;
+    navAbout.href = `index.html?lang=${lang}#about-section`;
+  }
+
+  const navProjects = document.getElementById("nav-projects");
+  if (navProjects) {
+    navProjects.textContent = content[lang].navProjects;
+    navProjects.href = `projects.html?lang=${lang}`;
+  }
+
+  const navContact = document.getElementById("nav-contact");
+  if (navContact) {
+    navContact.textContent = content[lang].navContact;
+    navContact.href = `contacts.html?lang=${lang}#contact-section`;
+  }
+
+  const toggle = document.getElementById("language-toggle");
+  if (toggle) {
+    toggle.checked = (lang === "en");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const currentLang = getLang();
+  updateLanguage(currentLang);
+
+  const toggle = document.getElementById("language-toggle");
+  if (toggle) {
+    toggle.addEventListener("change", () => {
+      const newLang = toggle.checked ? "en" : "bg";
+      setLang(newLang);
+      updateLanguage(newLang);
+    });
+  }
 });
