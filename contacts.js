@@ -38,8 +38,11 @@ function setLang(newLang) {
 function updateLanguageContacts(lang) {
   const content = contentContacts[lang];
 
-  document.getElementById("contacts-heading").textContent = content.contactsHeading;
-  document.getElementById("contact-intro").textContent = content.contactIntro;
+  const heading = document.getElementById("contacts-heading");
+  const intro = document.getElementById("contact-intro");
+
+  if (heading) heading.textContent = content.contactsHeading;
+  if (intro) intro.textContent = content.contactIntro;
 
   const navAbout = document.getElementById("nav-about");
   const navProjects = document.getElementById("nav-projects");
@@ -70,12 +73,11 @@ function updateLanguageContacts(lang) {
     });
   }
 
-  const langText = document.getElementById("lang-text");
-  const langFlag = document.getElementById("lang-flag");
-  if (langText) langText.textContent = lang.toUpperCase();
-  if (langFlag) {
-    langFlag.src = lang === "bg" ? "images/bg-flag.png" : "images/en-flag.png";
-    langFlag.alt = lang === "bg" ? "Български флаг" : "English flag";
+
+
+  const toggleBtn = document.getElementById("language-toggle");
+  if (toggleBtn) {
+    toggleBtn.checked = lang === "en";
   }
 }
 
@@ -83,10 +85,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const lang = getLang();
   updateLanguageContacts(lang);
 
-  const toggleBtn = document.getElementById("lang-toggle");
+  const toggleBtn = document.getElementById("language-toggle");
   if (toggleBtn) {
-    toggleBtn.addEventListener("click", () => {
-      const newLang = getLang() === "bg" ? "en" : "bg";
+    toggleBtn.addEventListener("change", () => {
+      const newLang = toggleBtn.checked ? "en" : "bg";
       setLang(newLang);
-      updateLanguageContacts(newLang); 
-  }}}
+      updateLanguageContacts(newLang);
+    });
+  }
+});

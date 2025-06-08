@@ -15,6 +15,52 @@ const content = {
 
 const projects = [
   {
+  title_bg: "AI чатбот с Flask и DialoGPT",
+  title_en: "AI Chatbot with Flask and DialoGPT",
+  description_bg: `
+    <strong>AI чатбот с Flask и Hugging Face DialoGPT</strong> е леко уеб приложение за водене на разговор, създадено с Python (Flask) и модела DialoGPT-medium на Hugging Face. Приема потребителски вход и генерира интелигентни отговори според контекста.
+
+    Проектът демонстрира как може да се внедри разговорен AI модел като уеб услуга с изчистен потребителски интерфейс.
+
+    Чатботът използва модела DialoGPT-medium на Microsoft — трансформър модел, дообучен върху милиони Reddit разговори. Той поддържа логика в диалога и следи контекста.
+
+    Фоновата логика е изградена с Flask за обслужване на потребителски заявки и API, а интерфейсът използва HTML и JavaScript за интеракция в реално време. Макар че отговорите обикновено са адекватни и интересни, поради генеративния характер на модела е възможно понякога да се появят неочаквани или неуместни отговори.
+  `,
+  description_en: `
+    <strong>AI Chatbot with Flask and Hugging Face DialoGPT</strong> is a lightweight conversational web application built with Python (Flask) and the DialoGPT-medium model by Hugging Face. It accepts user input and generates intelligent responses based on context.
+
+    This project showcases the deployment of a conversational AI model as a responsive web service with a simple interface.
+
+    The chatbot is powered by Microsoft’s DialoGPT-medium — a transformer-based model fine-tuned on millions of Reddit conversations. It handles dialogue flow and can maintain conversational context.
+
+    The backend uses Flask to serve the chatbot and manage API requests, while the frontend consists of HTML and JavaScript that allow real-time user interaction. Although the model generally produces relevant and engaging responses, occasional nonsensical outputs are possible due to its generative nature.
+  `,
+  images: [
+    "images/chatbot-1.png",
+    "images/chatbot-2.png",
+    "images/chatbot-3.png"
+  ]
+},
+
+  
+  {
+    title_bg: "Social Media Scraper",
+    title_en: "Social Media Scraper",
+    description_bg: `
+      <strong>Social Media Scraper</strong> е уеб приложение, създадено с JavaScript, HTML, CSS и Python, което извлича неактивни последователи от TikTok и Instagram. 
+      Улеснява анализа на аудиторията и оптимизацията на маркетинг стратегии.
+    `,
+    description_en: `
+      <strong>Social Media Scraper</strong> is a web app built with JavaScript, HTML, CSS, and Python that extracts inactive followers from TikTok and Instagram.
+      It facilitates audience analysis and marketing optimization.
+    `,
+    images: [
+      "images/insta.png",
+      "images/tiktok.png"
+    ]
+  },
+
+  {
     title_bg: "Container Calculator",
     title_en: "Container Calculator",
     description_bg: `
@@ -31,22 +77,7 @@ const projects = [
       "images/container-calculator-3.png"
     ]
   },
-  {
-    title_bg: "Social Media Scraper",
-    title_en: "Social Media Scraper",
-    description_bg: `
-      <strong>Social Media Scraper</strong> е уеб приложение, създадено с JavaScript, HTML, CSS и Python, което извлича неактивни последователи от TikTok и Instagram. 
-      Улеснява анализа на аудиторията и оптимизацията на маркетинг стратегии.
-    `,
-    description_en: `
-      <strong>Social Media Scraper</strong> is a web app built with JavaScript, HTML, CSS, and Python that extracts inactive followers from TikTok and Instagram.
-      It facilitates audience analysis and marketing optimization.
-    `,
-    images: [
-      "images/insta.png",
-      "images/tiktok.png"
-    ]
-  }
+  
 ];
 
 function getLang() {

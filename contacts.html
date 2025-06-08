@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Контакти | Contacts</title>
+  <title>Контакти | Angel Iliev Portfolio</title>
+  <meta name="description" content="Свържете се с Angel Iliev чрез социални мрежи – LinkedIn, GitHub и други." />
   <link rel="stylesheet" href="projects.css" />
-
 </head>
 <body>
   <header>
@@ -14,28 +14,26 @@
         <li><a id="nav-about" href="index.html#about-section">За мен</a></li>
         <li><a id="nav-projects" href="projects.html#projects-section">Проекти</a></li>
         <li><a id="nav-contact" href="contacts.html#contact-section" class="active">Контакт</a></li>
-        <li>
-       <center>
-	<div class="switch">
-	    <input id="language-toggle" class="check-toggle check-toggle-round-flat" type="checkbox">
-	    <label for="language-toggle"></label>
-	    <span class="on">BN</span>
-	    <span class="off">EN</span>
-       <span id="lang-label"></span>
-  	</div>
- </center>
-          </button>
-        </li>
       </ul>
     </nav>
+          <div class="switch-container">
+            <div class="switch">
+              <input id="language-toggle" class="check-toggle check-toggle-round-flat" type="checkbox">
+              <label for="language-toggle"></label>
+              <span class="on">BG</span>
+              <span class="off">EN</span>
+              <span id="lang-label"></span>
+            </div>
+          </div>
   </header>
+
 
   <main>
     <section id="contact-section">
       <h1 id="contacts-heading">Контакти</h1>
       <p id="contact-intro">Свържете се с мен чрез социалните мрежи:</p>
       <ul id="social-links">
-        <!-- Линкове ще се зареждат динамично -->
+        <!---->
       </ul>
     </section>
   </main>
@@ -44,7 +42,7 @@
     &copy; 2025 Angel Iliev | Всички права запазени.
   </footer>
 
-  <script src="contacts.js"></script>
+  <script src="contacts.js" defer></script>
   <script src="lang.js" defer></script>
 </body>
 </html>
