@@ -42,8 +42,53 @@ const projects = [
   ]
 },
 
-  
-  {
+{
+  title_bg: "YouTube Downloader Flask приложение",
+  title_en: "YouTube Downloader Flask Application",
+  description_bg: `
+    Леко и ефективно уеб приложение, базирано на Flask, което позволява на потребителите да свалят видеоклипове и аудиофайлове от YouTube в MP4 (видео) и MP3 (аудио) формати чрез използването на <strong>yt-dlp</strong> и <strong>ffmpeg</strong>.
+
+    <br><br><strong>Характеристики:</strong>
+    <ul>
+      <li>Въвеждане на YouTube URL за изтегляне на съдържание</li>
+      <li>Избор на формат за сваляне: MP4 (видео) или MP3 (аудио)</li>
+      <li>Показва статус съобщения и индикатор за напредъка (симулиран)</li>
+      <li>Автоматично стартира изтеглянето на файла след приключване</li>
+    </ul>
+
+    <br><strong>Изисквания:</strong>
+    <ul>
+      <li>Python 3.7 или по-нова версия</li>
+      <li><strong>ffmpeg</strong> - мултимедийна рамка за обработка на аудио и видео</li>
+      <li><strong>yt-dlp</strong> - команден инструмент за сваляне на видеоклипове</li>
+    </ul>
+  `,
+  description_en: `
+    A lightweight and efficient Flask-based web application that enables users to download YouTube videos and audio files in MP4 (video) and MP3 (audio) formats using <strong>yt-dlp</strong> and <strong>ffmpeg</strong>.
+
+    <br><br><strong>Features:</strong>
+    <ul>
+      <li>Enter a YouTube URL to download content</li>
+      <li>Select download format: MP4 (video) or MP3 (audio)</li>
+      <li>Displays status messages and a progress bar (simulated)</li>
+      <li>Automatically triggers file download upon completion</li>
+    </ul>
+
+    <br><strong>Requirements:</strong>
+    <ul>
+      <li>Python 3.7 or higher</li>
+      <li><strong>ffmpeg</strong> - multimedia framework for audio and video processing</li>
+      <li><strong>yt-dlp</strong> - command-line tool for downloading videos</li>
+    </ul>
+  `,
+  images: [
+    "images/youtube-downloader-1.png",
+    "images/youtube-downloader-2.png",
+    "images/youtube-downloader-3.png"
+  ]
+},
+
+ {
     title_bg: "Social Media Scraper",
     title_en: "Social Media Scraper",
     description_bg: `
